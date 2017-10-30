@@ -1,0 +1,105 @@
+body{
+  font-size: 18px;
+  font-family: arial;
+}
+
+.code{
+  font-family: monospace;
+  background-color: red;
+}
+
+
+.logo {
+  text-align: center;
+}
+
+.equation-input{
+  margin: 0 auto;
+  display: block;
+  font-size: 18px !important;
+  width: 617px;
+  padding: 10px;
+
+  font-family: 'Inconsolata';
+
+
+  border: 1px solid #DFE0E3;
+
+}
+
+
+.mathjax-output{
+  display: none;
+
+}
+.math-output-container{
+
+  position: relative;
+  width: 617px;
+  height: 70px;
+  margin: 0 auto;
+
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+
+.math-output-container .math-output{
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+
+#svg-img-out{
+  position: absolute;
+  opacity: 0;
+  position: absolute;
+  background-color: red;
+  top: 50%;
+  transform: translateY(-50%);
+
+}
+
+#mathjax-code-display{
+  width: 617px;
+
+  padding: 1%;
+  margin: 0 auto;
+}
+#mathjax-code-display #latex-code{
+  font-family: 'Inconsolata', monospace;
+}
+
+.code {
+  font-family: 'Inconsolata', monospace;
+  background-color: #FAFAFA;
+  border: 1px solid #DFE0E3;
+  border-radius: 5px;
+  padding: 1%;
+}
+.section .code {
+  cursor: pointer;
+}
+.section {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.notice {
+  font-family: 'Inconsolata', monospace;
+  font-size: 14px;
+  text-align: center;
+}
+
+sub{
+  font-size: 12px;
+  font-weight: normal;
+}
+@media screen and (min-width: 480px){
+  .documentation {
+    width: 75%;
+    margin: 0 auto;
+  }
+}

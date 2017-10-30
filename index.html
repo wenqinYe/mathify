@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mathify it - Simple Text to Math</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-61517869-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+<link rel="stylesheet" type="text/css" href="stylesheets/application.css" />
+<script src="javascripts/refactored_inputconversion.js"></script>
+<script src="javascripts/constants.js"></script>
+<script src="javascripts/libs/JWMathParser.js"></script>
+<script src="javascripts/application.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  jax: ["input/MathML","output/SVG"],
+  SVG: {
+    scale: 100,
+    useGlobalCache: false
+  }
+  });
+
+</script>
+</head>
+
+<body>
+  <h1 class="logo"> Mathify it </h1>
+  <p class="notice"> {} invisible brackets | ^ exponent | _ subscripts </p>
+  <input class="equation-input" id="txtIn" placeholder="ex: f(x) = x^2" autofocus>
+
+  </input>
+  <div class="mathjax-output" id="mathjax-output"></div>
+  <div class="math-output-container">
+    <img id="svg-img-out" class="svg-img-out" src="">
+
+    <div class="math-output" id = "divOut"></div>
+  </div>
+
+  <div id="mathjax-code-display">
+    <p> Latex: </p>
+    <div id="latex-code" class="code">
+
+    </div>
+  </div>
+
+  <p class="notice"> Email: wenqin908@gmail.com for bugs </p>
+
+  <div class="documentation">
+    <h2> How to Type Math  </h2>
+    <div class="section">
+      <p> Division /</p>
+      <p> Divides things </p>
+      <div class="code">
+        x+32/2
+      </div>
+      <div >
+        $$x+\frac{32}{2}$$
+      </div>
+    </div>
+
+    <div class="section">
+      <p> Invisible Brackets {} </p>
+      <p> Groups elements together </p>
+      <div class="code">
+        {x+32}/{2}
+      </div>
+      <div >
+        $$\frac{x+32}{2}$$
+      </div>
+    </div>
+    <div class="section">
+      <p> Visible Brackets () </p>
+      <p> Groups elements together too but are visible! </p>
+      <div class="code">
+        (x+32)/{2}
+      </div>
+      <div >
+        $$\frac{(x+32)}{2}$$
+      </div>
+    </div>
+
+    <div class="section">
+      <p> Superscripts and Exponents ^ </p>
+      <p> Puts an exponent (ensure to use brackets to group items you want in the exponent). </p>
+      <div class="code">
+        e^{i pi}
+      </div>
+      <div >
+        $${e^{{i \pi }}}$$
+      </div>
+      <div class="code">
+        x^{n+2}
+      </div>
+      <div >
+        $$x^{n+2}$$
+      </div>
+    </div>
+    <div class="section">
+      <p> Subscripts _ </p>
+      <p> Puts a subscript (ensure to use brackets to group items you want in the subscript). </p>
+      <div class="code">
+         x_{1} + x_{2}
+      </div>
+      <div >
+        $$x_{1} + x_{2}$$
+      </div>
+    </div>
+    <div class="section">
+      <p> text text{} </p>
+      <p> Write non italicized text. Alternativelty you can also use mathrm{}. </p>
+      <div class="code">
+         f(x) = text{hello world!}
+      </div>
+      <div >
+        $${f{ \left( x \right) } = \text {hello world!}}$$
+      </div>
+    </div>
+
+    <h2> Calculus </h2>
+    <div class="section">
+      <p> Limits lim </p>
+      <div class="code">
+        lim_{h -> 0}
+      </div>
+      <div >
+        $$\lim_{h \to 0}$$
+      </div>
+    </div>
+
+    <div class="section">
+      <p> Derivative Definition </p>
+      <div class="code">
+        f'(x) = lim_{h -> 0} {f(x+h) - f(x)}/h
+      </div>
+      <div >
+        $${f'{ \left( x \right) } = \lim _{{h \to 0}} \frac{{f{ \left( x+h \right) } - f{ \left( x \right) }}}{h}}$$
+      </div>
+    </div>
+
+
+    <div class="section">
+      <p> Lebiniz Derivative </p>
+      <div class="code">
+        {dy}/{dx}
+      </div>
+      <div >
+        $$\frac{dy}{dx}$$
+      </div>
+    </div>
+    <div class="section">
+      <p> Partial Derivative </p>
+      <div class="code">
+        {partialy}/{partialx}
+      </div>
+      <div >
+        $$\frac{\partial y}{\partial x}$$
+      </div>
+    </div>
+    <div class="section">
+      <p> Integration </p>
+      <div class="code">
+        int^{infty}_{0}f(x)
+      </div>
+      <div class="code">
+        integral^{infty}_{0}f(x)
+      </div>
+      <div >
+        $${ \int _{0}^{ \infty }f{ \left( x \right) }}$$
+      </div>
+    </div>
+
+    <div class="section">
+      <p> Summation sum</p>
+      <div class="code">
+        sum^{n}_{i=1}i = {n(n+1)}/2
+      </div>
+      <div >
+        $${ \sum ^{n}_{{i=1}}i = \frac{{n{ \left( n+1 \right) }}}{2}}$$
+      </div>
+    </div>
+
+    <div class="section">
+      <p> Product prod</p>
+      <div class="code">
+        prod^{n}_{i=1}nlogn
+      </div>
+      <div >
+        $${ \prod ^{n}_{{i=1}}\log n}$$
+      </div>
+    </div>
+
+
+    <h2> Chemistry </h2>
+    <div class="section">
+      <p> Ions </p>
+      <p> An ion  </p>
+      <div class="code">
+        H^{1+}_(g)
+      </div>
+      <div >
+        $$H^{1+}_{(g)}$$
+      </div>
+    </div>
+
+    <div class="section">
+      <p> Basic Chemical Equation </p>
+      <p> Basic chemical equation </p>
+      <div class="code">
+        CH_{4(g)} + O_{2(g)} -> H_2O_{(g)} + CO_{2(g)}
+      </div>
+      <div>
+        $${CH_{{4{ \left( g \right) }}} + O_{{2{ \left( g \right) }}} \to H_{2}O_{{{ \left( g \right) }}} + CO_{{2{ \left( g \right) }}}}$$
+      </div>
+    </div>
+
+    <h2> Special characters (examples)</h2>
+    <p> Use a capital letter to denote the capital version of the letter </p>
+    <div class="section">
+      <div class="code">
+        Delta
+      </div>
+      <div>
+        \(\Delta\)
+      </div>
+      <div class="code">
+        delta
+      </div>
+      <div>
+        \(\delta\)
+      </div>
+
+      <div class="code">
+        Omega
+      </div>
+      <div>
+        \(\Omega\)
+      </div>
+
+      <div class="code">
+        sigma
+      </div>
+      <div >
+        \(\sigma\)
+      </div>
+
+      <div class="code">
+        epsilon
+      </div>
+      <div >
+        \(\epsilon\)
+      </div>
+
+      <div class="code">
+        alpha
+      </div>
+      <div >
+        \(\alpha\)
+      </div>
+    </div>
+
+    </div>
+
+
+  </div>
+
+</body>
+</html>
